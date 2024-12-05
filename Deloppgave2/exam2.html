@@ -38,15 +38,7 @@
             <h2>Oppgaver</h2>
             <ul id="todolist">
                 <!-- De to listeelementene skal byttes ut med utskrift av data fra programkoden i <script> -->
-                <li>
-                    <span class="tast-text">Les eksamensteksten</span>
-                    <span class="task-status task-status-done">Done</span>
-                </li>
-                <li>
-                    <span class="tast-text">Løs oppgavene i InnfProg-eksamen</span>
-                    <span class="task-status task-status-todo">To do</span>
-                </li>
-            </ul>
+               
         </section>
         <footer><p>Adminpanel IPv1.0</p></footer>
     </main>
@@ -87,16 +79,46 @@
         let balance = 0;    //Startbalanse for utregning av utgifter og inntekter i november
 
 
-        //TODOS
-        function TodoListe() {
-        let todos = [
+        //TODOS      Kilder er skrevet i egen word fil i mappen
+        let data = [
             {text: "Les eksamensteksten", status: "Done"},
             {text: "Løs Innføring i programmerings-eksamen", status: "To do"},
             {text: "Lag funksjonalitet for å registrere nye oppgaver", status: "To do"},
             {text: "Lag funksjonalitet for å sette en eksisterende oppgave til utført ved å endre status", status: "To do"}
         ]
-       
+
+        let section = document.getElementById("todos");
+        let list = document.getElementById("todolist");
+
+        for (i = 0; i < data.length; i++) {
+        let li = document.createElement('li');
+        
+        let firstSpan = document.createElement("span");
+        firstSpan.innerText = data[i].text;
+        
+        
+        let secondSpan = document.createElement("span");
+        secondSpan.innerText = data[i].status;
+        
+        if (data[i].staus === "Done") {
+            secondSpan.classList.add("task-status task-status-done");
+        } else if (data[i].staus === "To do") {
+            secondSpan.classList.add("task-status task status-todo");
         }
+        
+        
+        li.appendChild(firstSpan);
+        li.appendChild(secondSpan);
+        
+        
+        list.appendChild(li);
+        }
+
+        section.appendChild(list);
+
+        
+       
+        
 
         
 

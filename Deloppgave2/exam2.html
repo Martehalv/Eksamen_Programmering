@@ -100,9 +100,9 @@
         let secondSpan = document.createElement("span");
         secondSpan.innerText = data[i].status;
         
-        if (data[i].staus === "Done") {
+        if (data[i].status === "Done") {
             secondSpan.classList.add("task-status task-status-done");
-        } else if (data[i].staus === "To do") {
+        } else if (data[i].status === "To do") {
             secondSpan.classList.add("task-status task status-todo");
         }
         

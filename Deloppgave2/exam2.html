@@ -12,7 +12,7 @@
             <h2>Kontakter</h2>
             <div id="contactlist"></div>
         </section>
-        <aside id="clock">13:37</aside>
+        <aside id="clock"></aside> 
         <section id="books">
             <h2>Regnskap</h2>
             <p>Innkommende egenkapital: Kr. <span id="incomingequity"></span></p>
@@ -32,12 +32,14 @@
         </section>
         <section id="todoform">
             <h2>Ny oppgave</h2>
-            <p><label for="task">Oppgavetekst:</label><br /><input type="text" id="task" /><button id="savetask">Lagre</button></p>
+            <p>
+                <label for="task">Oppgavetekst:</label><br />
+                <input type="text" id="task" />
+                <button id="savetask">Lagre</button></p>
         </section>
         <section id="todos">
             <h2>Oppgaver</h2>
             <ul id="todolist">
-                <!-- De to listeelementene skal byttes ut med utskrift av data fra programkoden i <script> -->
                
         </section>
         <footer><p>Adminpanel IPv1.0</p></footer>
@@ -129,17 +131,43 @@
         //Her legger jeg til listen i <section>.
         section.appendChild(list);
 
-
-        
-       
-        
-
-        
-
-        
-        
         
         //CLOCK
+        /*Kilden jeg har fulgt er : https://codepen.io/afarrar/pen/JRaEjP
+        Den er på engelsk, og tar for seg AM og PM. Dette tok jeg ikke med i koden min.*/
+
+        // Starta med å lage en function.
+        function clockTime() {
+
+            //Her henter de inn timer, minutter og sekunder
+            var date = new Date();
+            var h = date.getHours();
+            var m = date.getMinutes();
+            var s = date.getSeconds();
+
+            //If er for å ha en 24 timers klokke (et døgn), slik at den starter på 0 igjen etter den har gått i 24 timer.
+            if (h == 0) {
+                h = 24;
+            }
+
+            //Denne skal være med på å legge til en 0 hvis tallene i klokken er mindre enn 10. Dette er for mer oversikt.
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+
+            //Her er variabel som viser hvordan klokka ser ut.
+            var time = h + ":" + m + ":" + s;
+
+            //Disse skal til for å oppdatere klokken vår i html'en
+            document.getElementById("clock").innerText = time;
+            document.getElementById("clock").textContent = time;
+        
+            //Denne starter clockTime igjen etter 1 sekund, dette gjør så klokken oppdaterer seg hvert sekund.
+            setTimeout(clockTime, 1000);
+        }
+
+        //Starter function
+        clockTime();
         
     </script>
 </body>

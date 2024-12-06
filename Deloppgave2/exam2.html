@@ -80,6 +80,8 @@
 
 
         //TODOS      Kilder er skrevet i egen word fil i mappen
+
+        //Først fjernet jeg det som var tidligere i html'en, deretter lagde jeg et nytt navn til arrayen under (data)
         let data = [
             {text: "Les eksamensteksten", status: "Done"},
             {text: "Løs Innføring i programmerings-eksamen", status: "To do"},
@@ -87,33 +89,37 @@
             {text: "Lag funksjonalitet for å sette en eksisterende oppgave til utført ved å endre status", status: "To do"}
         ]
 
+        //Her har jeg koblet til id'ene i html'en. Id for section og list.
         let section = document.getElementById("todos");
         let list = document.getElementById("todolist");
 
+        //Lagde en for loop for at den skal gå igjennom hver del i arrayen.
         for (i = 0; i < data.length; i++) {
-        let li = document.createElement('li');
+        let li = document.createElement('li'); //Denne lager en <li> for hver del ved bruk av createElement("li").
         
-        let firstSpan = document.createElement("span");
+        //Lagd en <span> for "text" i arrayen. 
+        let firstSpan = document.createElement("span"); 
         firstSpan.innerText = data[i].text;
         
-        
+        //Lagd en annen <span> for "status" i arrayen. 
         let secondSpan = document.createElement("span");
         secondSpan.innerText = data[i].status;
         
+        //En if, else if, for å få riktige knapper i forhold til "status" i arrayet (Done eller To do). Koblet til clas'ene i css'en.
         if (data[i].status === "Done") {
-            secondSpan.classList.add("task-status task-status-done");
+            secondSpan.classList.add("task-status", "task-status-done");
         } else if (data[i].status === "To do") {
-            secondSpan.classList.add("task-status task status-todo");
+            secondSpan.classList.add("task-status", "task-status-todo");
         }
         
-        
+        //Her legger jeg til <span> elementene i <li> elementet.
         li.appendChild(firstSpan);
         li.appendChild(secondSpan);
         
-        
+        //Her legger jeg til <li> elementene i listen.
         list.appendChild(li);
         }
-
+        //Her legger jeg til listen i <section>.
         section.appendChild(list);
 
         

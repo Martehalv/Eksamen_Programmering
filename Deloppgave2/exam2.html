@@ -55,10 +55,17 @@
 
         let contactlist = ""
 
+        /*Under contacts.map har jeg lagt inn mailto protokollen, 
+        fordi .map gjør så vi går igjennom hele arrayen. Dermed får vi med oss hver 
+        enkel mail, og kan deretter bruke mailto protkollen her for å få med oss alle
+        mailene (${contact.mail}*/
         contacts.map((contact, index) => {
             contactlist += `<article>
-                <p><strong>${contact.lastname}, ${contact.firstname}</strong><br />
-                    Kontor: ${contact.office} | E-post: ${contact.mail}</p>
+                <p>
+                    <strong>${contact.lastname}, ${contact.firstname}</strong><br />
+                    Kontor: ${contact.office} | 
+                    E-post: <a href="mailto:${contact.mail}">${contact.mail}</a> 
+                </p>
             </article>`
         })
 
@@ -121,6 +128,7 @@
         }
         //Her legger jeg til listen i <section>.
         section.appendChild(list);
+
 
         
        

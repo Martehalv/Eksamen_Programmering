@@ -55,8 +55,21 @@
             {lastname: "Jansson", firstname: "Sigried", office: "B1", mail: "s.jansson@company.com"}
         ]
 
+        //ALFABETISK REKKEFØLGE
+        //Laget en funkjson som går igjennom contacts arrayen. Denne sammenligner kontaktene (a,b). 
+        contacts.sort(function (a, b) {
+            if(a.lastname < b.lastname) {  //Etternavnet a kommer alfabetisk før etternavnet b så skal det returneres -1 for at a kommer før b.
+                return -1;
+            }
+            if(a.lastname > b.lastname) {  //Etternavnet a kommer alfabetisk etter etternavnet b så skal det returneres 1 for at b kommer før a.
+                return 1;
+            }
+            return 0;  //Returnerer 0 fordi ingen videre endringer skal skje.
+        })
+
         let contactlist = ""
 
+        //MAILTO
         /*Under contacts.map har jeg lagt inn mailto protokollen, 
         fordi .map gjør så vi går igjennom hele arrayen. Dermed får vi med oss hver 
         enkel mail, og kan deretter bruke mailto protkollen her for å få med oss alle

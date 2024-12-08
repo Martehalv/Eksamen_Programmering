@@ -39,8 +39,7 @@
         </section>
         <section id="todos">
             <h2>Oppgaver</h2>
-            <ul id="todolist">
-               
+            <ul id="todolist">        
         </section>
         <footer><p>Adminpanel IPv1.0</p></footer>
     </main>
@@ -87,7 +86,8 @@
         document.getElementById("contactlist").innerHTML = contactlist
         
         //BOOKS
-        const books = [
+        //I denne Books oppgaven gjorde jeg det samme som i Todos oppgaven, bare endret til andre og riktige navn/variabler.
+        let books = [
             {text: "Printerblekk", date: "02.11.24", amount: -750},
             {text: "Printerpapir", date: "02.11.24", amount: -439},
             {text: "Nettbutikksalg, uke 44", date: "06.11.24", amount: 3428},
@@ -96,6 +96,39 @@
             {text: "Nettbutikksalg, uke 45", date: "13.11.24", amount: 2988}
         ]
 
+        // Linket til id'ene i html. Section og Div. Det er her script koden skal legges inn.
+        let bookSection = document.getElementById("book");
+        let bookList = document.getElementById("booklines");
+
+        //Her har jeg lagd en loop, slik at den går igjennom alle delene i arrayen.
+        for (i = 0; i < books.length; i++) {
+            let div = document.createElement('div');  //Denne lager en <div> for hvert element i arrayen i div'en vår.
+            div.classList.add("bookline");  // Her linker jeg til css class om hvordan div elementet skal se ut.
+
+            //Her lager jeg en <span> for "text" i arrayen, og linket til den. Til slutt har jeg også linket til css class for "text".
+            let textSpan = document.createElement("span");
+            textSpan.innerText = books[i].text;
+            textSpan.classList.add("booktext");
+
+            //Her har jeg gjort akkurat det samme, bare for "date" i arrayen.
+            let dateSpan = document.createElement("span");
+            dateSpan.innerText = books[i].date;
+            dateSpan.classList.add("bookdate");
+
+            //Her har jeg gjort det for "amount" i arrayen.
+            let amountSpan = document.createElement("span");
+            amountSpan.innerText = books[i].amount;
+            amountSpan.classList.add("bookamount");
+
+            //Så måtte jeg legge til alle 3 <span> elementene i div'en.
+            div.appendChild(textSpan);
+            div.appendChild(dateSpan);
+            div.appendChild(amountSpan);
+            
+            //Til slutt la jeg til <div> elementene i div'en (booklines).
+            bookList.appendChild(div);
+        }
+        
         let equity = 23782; //Penger på konto ved inngangen til november
         document.getElementById("incomingequity").innerHTML = equity
         let balance = 0;    //Startbalanse for utregning av utgifter og inntekter i november
@@ -112,8 +145,8 @@
         ]
 
         //Her har jeg koblet til id'ene i html'en. Id for section og list.
-        let section = document.getElementById("todos");
-        let list = document.getElementById("todolist");
+        let todoSection = document.getElementById("todos");
+        let todoList = document.getElementById("todolist");
 
         //Lagde en for loop for at den skal gå igjennom hver del i arrayen.
         for (i = 0; i < data.length; i++) {
@@ -139,10 +172,10 @@
         li.appendChild(secondSpan);
         
         //Her legger jeg til <li> elementene i listen.
-        list.appendChild(li);
+        todoList.appendChild(li);
         }
         //Her legger jeg til listen i <section>.
-        section.appendChild(list);
+        todoSection.appendChild(list);
 
         
         //CLOCK

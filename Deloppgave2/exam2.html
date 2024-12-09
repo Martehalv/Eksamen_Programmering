@@ -71,7 +71,7 @@
         //MAILTO
         /*Under contacts.map har jeg lagt inn mailto protokollen, 
         fordi .map gjør så vi går igjennom hele arrayen. Dermed får vi med oss hver 
-        enkel mail, og kan deretter bruke mailto protkollen her for å få med oss alle
+        enkel mail, og kan deretter bruke mailto for å få med oss alle
         mailene (${contact.mail}*/
         contacts.map((contact, index) => {
             contactlist += `<article>
@@ -134,7 +134,7 @@
         let balance = 0;    //Startbalanse for utregning av utgifter og inntekter i november
 
 
-        //TODOS      Kilder er skrevet i egen word fil i mappen
+        //TODOS      
 
         //Først fjernet jeg det som var tidligere i html'en, deretter lagde jeg et nytt navn til arrayen under (data)
         let data = [
@@ -177,34 +177,39 @@
 
 
         // LAGRE KNAPP
-
+        //Lager en function om når man trykker("click") på Lagre knappen ("savetask").
         document.getElementById("savetask").addEventListener("click", function() {
-            let saveTextInput = document.getElementById("task");
-            let saveText = saveTextInput.value;
+            let saveTextInput = document.getElementById("task");  //Her linker jeg til input feltet i html'en
+            let saveText = saveTextInput.value;  //Her har jeg hentet det som står i input feltet ved brukt av .value
 
+            //Lager en if for når det er tekst i input feltet.
             if (saveText) {
-                let li = document.createElement('li');
+                let li = document.createElement('li');  //Her legger jeg til en <li> i listen. Slik at de nye oppgavene, legger seg etter de tidligere oppgavene.
 
+                //Lage en <span> for det som står i input feltet. Dette er samme variabler som jeg brukte i Todos oppgaven, slik at det legger seg likt.
                 let firstSpan = document.createElement("span"); 
-                firstSpan.innerText = saveText;
+                firstSpan.innerText = saveText;  //Teksten i input feltet vil vise seg som oppgave
 
+                //Lage en <span> for knappen. Denne er også samme variabel som i Todos oppgaven
                 let secondSpan = document.createElement("span"); 
-                secondSpan.innerText = "To do";
-                secondSpan.classList.add("task-status", "task-status-todo");
+                secondSpan.innerText = "To do";  //De nye oppgavene starter med "To do" knapp.
+                secondSpan.classList.add("task-status", "task-status-todo"); //Linket til class i css en til "To do" knappen
 
+                //Legger til <span> elementene i <li> elementet
                 li.appendChild(firstSpan);
                 li.appendChild(secondSpan);
 
+                //Her legger jeg til <li> i oppgave listen "todolist"
                 document.getElementById("todolist").appendChild(li);
 
-                saveText = "";
-            } else if (saveText === "") {
-                alert("Det er ikke skrevet inn noe i oppgaveteksten")
+                //Her gjør jeg sann at feltet blir tømt etter jeg har trykket på Lagre knappen, dette ved bruk av .value.
+                saveTextInput.value = "";
+
+            } else if (saveText === "") {  //Laget en else if for når det ikke står noe i input feltet. 
+                alert("Det er ikke skrevet inn noe i oppgaveteksten")  //Gir en tilbakemelding om at input feltet er tomt.
             }
         })
 
-        
-        
         //CLOCK
         /*Kilden jeg har fulgt er : https://codepen.io/afarrar/pen/JRaEjP
         Den er på engelsk, og tar for seg AM og PM. Dette tok jeg ikke med i koden min.*/

@@ -174,9 +174,36 @@
         //Her legger jeg til <li> elementene i listen.
         todoList.appendChild(li);
         }
-        //Her legger jeg til listen i <section>.
-        todoSection.appendChild(list);
 
+
+        // LAGRE KNAPP
+
+        document.getElementById("savetask").addEventListener("click", function() {
+            let saveTextInput = document.getElementById("task");
+            let saveText = saveTextInput.value;
+
+            if (saveText) {
+                let li = document.createElement('li');
+
+                let firstSpan = document.createElement("span"); 
+                firstSpan.innerText = saveText;
+
+                let secondSpan = document.createElement("span"); 
+                secondSpan.innerText = "To do";
+                secondSpan.classList.add("task-status", "task-status-todo");
+
+                li.appendChild(firstSpan);
+                li.appendChild(secondSpan);
+
+                document.getElementById("todolist").appendChild(li);
+
+                saveText = "";
+            } else if (saveText === "") {
+                alert("Det er ikke skrevet inn noe i oppgaveteksten")
+            }
+        })
+
+        
         
         //CLOCK
         /*Kilden jeg har fulgt er : https://codepen.io/afarrar/pen/JRaEjP

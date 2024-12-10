@@ -41,9 +41,31 @@
         const ctx = canvas.getContext("2d")
 
         /* --- YOUR FUNCTIONALITY AND CODE GOES HERE --- */
-        function addColor() {
-            
+
+        //LEGG TIL FARGE KNAPP
+        let colors = [];
+
+        function randomColor () {
+           return '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
         }
+
+        function addColor() {
+            document.getElementById("addColor").addEventListener("click", function () {
+                const newColor = randomColor();
+                colors.push(newColor);
+                colorCanvas();
+            })
+        }
+
+        function colorCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const colorWidth = canvas.width / 10;
+            colors.forEach((setcolor, form)=> {
+                ctx.fillStyle = setcolor;
+                ctx.fillRect(form * colorWidth, 0, colorWidth, canvas.height);
+            })
+        }
+        addColor()
 
         //requestAnimationFrame
         const requestAnimationFrame = window.requestAnimationFrame || window.msRequestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame

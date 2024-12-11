@@ -60,6 +60,8 @@
                 }  else {
                         alert("Kun 10 farger er tillatt!");  //En else for å ikke gjøre det mulig for brukeren å lage fler enn 10 farger. Her har jeg gitt en tilbakemeldingen.
                 } 
+                disabledButton();  //Koblet til function for kode for disabled knappen, slik at denne stadig oppdateteres.
+                colorCanvas();  //Koblet til function for colorCanvas, slik at denne stadig oppdateteres.
             })
         }
 
@@ -75,15 +77,48 @@
         //Her starter jeg hele functionen 
         addColor()
 
+        //KNAPP DISABLED
+        //Laget en function, med if inni
+        function disabledButton(){
+            if(colors.length == 10) {  //Denne if testen gjelder kun når det er 10 farger i palettet
+                document.getElementById("addColor").disabled = true;  //Knappen fungerer ikke hvis det er 10 farger
+            } else {
+                document.getElementById("addColor").disabled = false;  //Ellers fungerer den som vanlig
+            }
+        }
+
+        //Starter og oppdateter functionen
+        disabledButton()
+
         //requestAnimationFrame
         const requestAnimationFrame = window.requestAnimationFrame || window.msRequestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame
         function renderCanvas() {
-            
+            colorCanvas();  //Her har jeg satt inn function til colorCanvas som stadig oppdaterer functionen ved bruk av requestAnimationFrame.
             requestAnimationFrame(renderCanvas)
         }
 
         //Initial running of drawing canvas
         renderCanvas()
+
+        //TILBAKESTILL KNAPP
+        //Jeg lagde en click function for når man trykker på tilbakestill knappen, og ved bruk av "color = []"", så tømmer jeg jeg feltet med farger, fordi det tomme arrayet består av ingenting og derfor tømmer palettet for farger.
+        document.getElementById("emptyArray").addEventListener("click", function () { 
+            colors = [];  
+            disabledButton();  //Koblet til function for kode for disabled knappen, slik at denne stadig oppdateteres.
+            colorCanvas();  //Koblet til function for colorCanvas, slik at denne stadig oppdateteres.
+        })
+
+        //GENERER 10 NYE FARGER
+        //Her har jeg lagd en click function for generer 10 nye farger knappen.
+        document.getElementById("generateAll").addEventListener("click", function () {
+            colors = [];  //Må først tømme hele paletten, i tilfelle det er farger der allerede.
+            for (i = 0; i < 10; i++) {  //Deretter lage en for loop, hvor loopen går opp til 10 ganger. Dette lager 10 helt nye farger.
+                colors.push(randomColor());  //I loopen må vi lage ny tilfeldig farge. Derfor bruker .push og linker til functionen som lager ny tilfeldig farge. 
+            }
+            disabledButton();  //Koblet til function for kode for disabled knappen, slik at denne stadig oppdateteres.
+            colorCanvas();  //Koblet til function for colorCanvas, slik at denne stadig oppdateteres.
+        })
+
     </script>
 </body>
 </html>

@@ -55,7 +55,7 @@
             document.getElementById("addColor").addEventListener("click", function () {  //Her linker jeg til knappen, og det som skjer i funskjonen er når det blir trykket på ("click")
                 if (colors.length < 10) {  //Laget en if for at det ikke kan lages mer enn 10 farger
                     let newColor = randomColor();  //Dette lager en ny farge, hvor jeg også har linket til function med koden til en tilfeldig farge.
-                    colors.push(newColor);  //Deretter legger vi den nye farger i arrayen (colors)
+                    colors.push(newColor);  //Deretter legger vi den nye farger i arrayen (colors) ved bruk av .push
                     colorCanvas();  //Til slutt legger jeg til en annen function for canvas. Denne gjør så canvas blir oppdatert. Canvas er bildene du ser i palettet.
                 }  else {
                         alert("Kun 10 farger er tillatt!");  //En else for å ikke gjøre det mulig for brukeren å lage fler enn 10 farger. Her har jeg gitt en tilbakemeldingen.
